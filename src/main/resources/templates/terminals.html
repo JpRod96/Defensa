@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+
+    <title>Recuperatorio</title>
+
+</head>
+<body>
+
+<a href="/terminal/new">New Terminal</a>
+<div class="container">
+    <div th:if="${not #lists.isEmpty(terminals)}">
+        <h2>List of Terminals</h2>
+        <table class="table table-striped">
+            <tr>
+                <th>Id</th>
+                <th>Serial</th>
+                <th>Category</th>
+                <th>User</th>
+                <th>Active</th>
+                <th>N° Locations</th>
+                <th>Map</th>
+                <th>View</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+            <tr th:each="terminal : ${terminals}">
+                <td th:text="${terminal.id}">Id</td>
+                <td th:text="${terminal.serial}">Serial</td>
+                <td th:text="${terminal.category.name}">Serial</td>
+                <td th:text="${terminal.user.name}">user</td>
+                <div th:if="${terminal.active==0}">
+                    <td>Yes</td>
+                </div>
+                <div th:if="${terminal.active==1}">
+                    <td>No</td>
+                </div>
+                <td th:text="${terminal.locations.size()}">number</td>
+                <td><a th:href="${ '/terminal/map/' + terminal.id}">Map</a></td>
+                <td><a th:href="${ '/terminal/' + terminal.id}">View</a></td>
+                <td><a th:href="${'/terminal/edit/' + terminal.id}">Edit</a></td>
+                <td><a th:href="${'/terminal/delete/' + terminal.id}">Delete</a></td>
+            </tr>
+        </table>
+    </div>
+</div>
+<a href="/">Back</a>
+</body>
+</html>

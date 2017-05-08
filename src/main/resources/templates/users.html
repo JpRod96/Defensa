@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+
+    <title>Recuperatorio</title>
+
+</head>
+<body>
+
+<a href="/user/new">New User</a>
+<div class="container">
+    <div th:if="${not #lists.isEmpty(users)}">
+        <h2>List of Users</h2>
+        <table class="table table-striped">
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Main User</th>
+                <th>Afiliated Companies</th>
+                <th>View</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+            <tr th:each="cat : ${users}">
+                <td th:text="${cat.id}">Id</td>
+                <td th:text="${cat.name}">Serial</td>
+                <div th:if="${not cat.es()}">
+                    <td th:text="${cat.userid.name}">User</td>
+                </div>
+                <div th:if="${cat.es()}">
+                    <td >None</td>
+                </div>
+                <div th:if="${not #lists.isEmpty(cat.companies)}">
+                    <td >There are afilieated companies</td>
+                </div>
+                <div th:if="${#lists.isEmpty(cat.companies)}">
+                    <td >No afiliated companies</td>
+                </div>
+                <td><a th:href="${ '/user/' + cat.id}">View</a></td>
+                <td><a th:href="${'/user/edit/' + cat.id}">Edit</a></td>
+                <td><a th:href="${'/user/delete/' + cat.id}">Delete</a></td>
+            </tr>
+        </table>
+    </div>
+</div>
+<a href="/">Back</a>
+</body>
+</html>

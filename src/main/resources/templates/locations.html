@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+
+    <title>Recuperatorio</title>
+
+</head>
+<body>
+
+<a href="/location/new">New Location</a>
+<div class="container">
+    <div th:if="${not #lists.isEmpty(locations)}">
+        <h2>List of Locations</h2>
+        <table class="table table-striped">
+            <tr>
+                <th>Id</th>
+                <th>Latitude</th>
+                <th>Longitude</th>
+                <th>Terminal Serial</th>
+                <th>View</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+            <tr th:each="loc : ${locations}">
+                <td th:text="${loc.id}">Id</td>
+                <td th:text="${loc.lat}">Lat</td>
+                <td th:text="${loc.lng}">Lng</td>
+                <td th:text="${loc.terminal.serial}">Lng</td>
+                <td><a th:href="${ '/location/' + loc.id}">View</a></td>
+                <td><a th:href="${'/location/edit/' + loc.id}">Edit</a></td>
+                <td><a th:href="${'/location/delete/' + loc.id}">Delete</a></td>
+            </tr>
+        </table>
+    </div>
+</div>
+<a href="/">Back</a>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+
+    <title>Recuperatorio</title>
+
+</head>
+<body>
+
+<a href="/category/new">New Category</a>
+<div class="container">
+    <div th:if="${not #lists.isEmpty(categories)}">
+        <h2>List of Categories</h2>
+        <table class="table table-striped">
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>View</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+            <tr th:each="cat : ${categories}">
+                <td th:text="${cat.id}">Id</td>
+                <td th:text="${cat.name}">Serial</td>
+                <td><a th:href="${ '/category/' + cat.id}">View</a></td>
+                <td><a th:href="${'/category/edit/' + cat.id}">Edit</a></td>
+                <td><a th:href="${'/category/delete/' + cat.id}">Delete</a></td>
+            </tr>
+        </table>
+    </div>
+</div>
+<a href="/">Back</a>
+</body>
+</html>
